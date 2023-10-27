@@ -1,5 +1,5 @@
-@objc class MyModule: NSObject {
-    @objc func multiply(a: Double, b: Double, resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) {
+@objc public class MyModule: NSObject {
+    @objc public func multiply(a: Double, b: Double, resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) {
         resolve(a * b)
     }
 }

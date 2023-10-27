@@ -1,3 +1,4 @@
+#import "react_native_kotlin_swift_backward_compatible_module-Swift.h"
 #import "KotlinSwiftBackwardCompatibleModule.h"
 
 @implementation KotlinSwiftBackwardCompatibleModule
