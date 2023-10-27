@@ -1,0 +1,56 @@
+diff --git a/React/React-RCTFabric.podspec b/React/React-RCTFabric.podspec
+index 7483259a5b5c5098990537d6b9b19788d94dfe53..d6b4f3318faba22ce18345651b91f1f46938e57d 100644
+--- a/React/React-RCTFabric.podspec
++++ b/React/React-RCTFabric.podspec
+@@ -79,6 +79,7 @@ Pod::Spec.new do |s|
+   s.dependency "React-RCTText"
+   s.dependency "React-utils"
+   s.dependency "React-runtimescheduler"
++  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+ 
+   if ENV["USE_HERMES"] == nil || ENV["USE_HERMES"] == "1"
+     s.dependency "hermes-engine"
+diff --git a/ReactCommon/react/debug/React-debug.podspec b/ReactCommon/react/debug/React-debug.podspec
+index dab4a31652edfa60e8d1828cb4c58a258e6296ba..a637534719fb6a666e60c7cb4543e7f088bea66f 100644
+--- a/ReactCommon/react/debug/React-debug.podspec
++++ b/ReactCommon/react/debug/React-debug.podspec
+@@ -27,7 +27,10 @@ Pod::Spec.new do |s|
+   s.source                 = source
+   s.source_files           = "**/*.{cpp,h}"
+   s.header_dir             = "react/debug"
+-  s.pod_target_xcconfig    = { "CLANG_CXX_LANGUAGE_STANDARD" => "c++17" }
++  s.pod_target_xcconfig    = { 
++  "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
++  'DEFINES_MODULE' => 'YES' 
++  }
+ 
+   if ENV['USE_FRAMEWORKS']
+     s.module_name            = "React_debug"
+diff --git a/ReactCommon/react/renderer/graphics/React-graphics.podspec b/ReactCommon/react/renderer/graphics/React-graphics.podspec
+index 19cc4ea84a7acf2138bdcead89d7c3c16c7e3642..6e9e0e4b089ec2b5b9ecee85e3c833cabe357c7b 100644
+--- a/ReactCommon/react/renderer/graphics/React-graphics.podspec
++++ b/ReactCommon/react/renderer/graphics/React-graphics.podspec
+@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
+     header_search_paths = header_search_paths + ["\"$(PODS_TARGET_SRCROOT)/platform/ios\""]
+   end
+ 
+-  s.pod_target_xcconfig  = { "USE_HEADERMAP" => "NO", "HEADER_SEARCH_PATHS" => header_search_paths.join(" ") }
++  s.pod_target_xcconfig  = { "USE_HEADERMAP" => "NO", "HEADER_SEARCH_PATHS" => header_search_paths.join(" "), 'DEFINES_MODULE' => 'YES' }
+ 
+   s.dependency "glog"
+   s.dependency "RCT-Folly/Fabric", folly_version
+diff --git a/ReactCommon/react/utils/React-utils.podspec b/ReactCommon/react/utils/React-utils.podspec
+index d262c55924105281d5e329e6339db70b55a95acb..77ba5819ef757362716dcc9ce9e0483738ccb412 100644
+--- a/ReactCommon/react/utils/React-utils.podspec
++++ b/ReactCommon/react/utils/React-utils.podspec
+@@ -44,7 +44,9 @@ Pod::Spec.new do |s|
+   s.exclude_files          = "tests"
+   s.pod_target_xcconfig    = {
+     "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
+-    "HEADER_SEARCH_PATHS" => header_search_paths.join(' ')}
++    "HEADER_SEARCH_PATHS" => header_search_paths.join(' '),
++    'DEFINES_MODULE' => 'YES'
++    }
+ 
+   if ENV['USE_FRAMEWORKS']
+     s.module_name            = "React_utils"
