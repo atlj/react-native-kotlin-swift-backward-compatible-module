@@ -13,16 +13,17 @@ const KotlinSwiftBackwardCompatibleModuleModule = isTurboModuleEnabled
   ? require('./NativeKotlinSwiftBackwardCompatibleModule').default
   : NativeModules.KotlinSwiftBackwardCompatibleModule;
 
-const KotlinSwiftBackwardCompatibleModule = KotlinSwiftBackwardCompatibleModuleModule
-  ? KotlinSwiftBackwardCompatibleModuleModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+const KotlinSwiftBackwardCompatibleModule =
+  KotlinSwiftBackwardCompatibleModuleModule
+    ? KotlinSwiftBackwardCompatibleModuleModule
+    : new Proxy(
+        {},
+        {
+          get() {
+            throw new Error(LINKING_ERROR);
+          },
+        }
+      );
 
 export function multiply(a: number, b: number): Promise<number> {
   return KotlinSwiftBackwardCompatibleModule.multiply(a, b);
